@@ -33,7 +33,7 @@ describe("ASSOT test", function () {
     it("should fail mint cause paused", async function () {
       expect(assot.connect(addr1).developNFT(1, {
         value: ethers.utils.parseEther('0.15')
-      })).to.be.revertedWith()
+      })).to.be.revertedWith('Contract paused')
     });
 
     it("should allow mint", async function () {

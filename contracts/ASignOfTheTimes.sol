@@ -23,7 +23,7 @@
    ██║   ██║██║╚██╔╝██║██╔══╝  ╚════██║           
    ██║   ██║██║ ╚═╝ ██║███████╗███████║           
    ╚═╝   ╚═╝╚═╝     ╚═╝╚══════╝╚══════╝                                                                                      
-*/   
+*/
 
 pragma solidity ^0.8.0;
 
@@ -34,62 +34,60 @@ import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
 contract ASignOfTheTimes is ERC721A, ReentrancyGuard, Ownable {
 
+
+
     string public baseURI;
 
-    address payable public GregoryBerg = payable(0x33602B325F169741662cD33C3F693Eee8dbD20D5);
+    address payable public GregoryBerg =
+        payable(0x33602B325F169741662cD33C3F693Eee8dbD20D5);
 
     bool public paused = true;
 
-    uint public nftPerAddress = 1;
-    uint public maxSupply = 100;
+    uint256 public nftPerAddress = 1;
+    uint256 public maxSupply = 100;
     uint256 cost = 0.15 ether;
 
     mapping(address => uint256) public addressMintedBalance;
 
-    constructor(
-        string memory _initBaseURI
-    )ERC721A("A Sign Of The Times", "ASSOT") 
+    constructor(string memory _initBaseURI)
+        ERC721A("A Sign Of The Times", "ASSOT")
     {
-       baseURI= _initBaseURI;
+        baseURI = _initBaseURI;
     }
 
     modifier unPaused() {
-        require(!paused, 'Contract paused');
+        require(!paused, "Contract paused");
         _;
     }
 
     modifier callerIsUser() {
-        require(tx.origin == msg.sender, 'The caller is another contract.');
+        require(tx.origin == msg.sender, "The caller is another contract.");
         _;
     }
 
     modifier isCorrectPayment(uint256 price, uint256 _amount) {
-        require(
-            cost * _amount >= msg.value,
-            "Incorrect ETH value sent"
-        );
+        require(cost * _amount >= msg.value, "Incorrect ETH value sent");
         _;
     }
 
-    function developNFT(
-        uint256 _amount
-    ) 
-        public 
-        payable 
-        unPaused() 
-        callerIsUser() 
+    function developNFT(uint256 _amount)
+        public
+        payable
+        unPaused
+        callerIsUser
         isCorrectPayment(cost, _amount)
     {
-        uint supply = totalSupply();
-        require((_amount + supply) <= maxSupply, "Sold Out");
-        require(_amount + addressMintedBalance[msg.sender] <= nftPerAddress, "one NFT Per Address");
+        require((_amount + totalSupply()) <= maxSupply, "Sold Out");
+        require(
+            _amount + addressMintedBalance[msg.sender] <= nftPerAddress,
+            "Can only has 1"
+        );
 
         for (uint256 i = 1; i <= _amount; i++) {
             addressMintedBalance[msg.sender]++;
             _safeMint(msg.sender, _amount);
         }
     }
-
 
 
     function setBaseURI(string memory _newBaseURI) external onlyOwner {
@@ -104,7 +102,7 @@ contract ASignOfTheTimes is ERC721A, ReentrancyGuard, Ownable {
         cost = _cost;
     }
 
-    function setNftPerAddress(uint _nftPerAddress) external onlyOwner {
+    function setNftPerAddress(uint256 _nftPerAddress) external onlyOwner {
         nftPerAddress = _nftPerAddress;
     }
 
@@ -113,7 +111,7 @@ contract ASignOfTheTimes is ERC721A, ReentrancyGuard, Ownable {
         require(success, "Failed to send to lead.");
     }
 
-    function tokenURI(uint256 _tokenId) 
+    function tokenURI(uint256 _tokenId)
         public
         view
         virtual
@@ -121,10 +119,12 @@ contract ASignOfTheTimes is ERC721A, ReentrancyGuard, Ownable {
         returns (string memory)
     {
         require(_exists(_tokenId), "Token does not exist.");
-        return string(abi.encodePacked(baseURI, Strings.toString(_tokenId),".json"));
+        return
+            string(
+                abi.encodePacked(baseURI, Strings.toString(_tokenId), ".json")
+            );
     }
 }
-
 
 /*
  █████╗     ███████╗██╗ ██████╗ ███╗   ██╗        
@@ -145,4 +145,4 @@ contract ASignOfTheTimes is ERC721A, ReentrancyGuard, Ownable {
    ██║   ██║██║╚██╔╝██║██╔══╝  ╚════██║           
    ██║   ██║██║ ╚═╝ ██║███████╗███████║           
    ╚═╝   ╚═╝╚═╝     ╚═╝╚══════╝╚══════╝                                                                                      
-*/    
+*/
