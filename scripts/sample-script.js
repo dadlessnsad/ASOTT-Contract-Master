@@ -4,7 +4,7 @@ const hre = require("hardhat");
 async function main() {
 
   const ASSOTNFT = await hre.ethers.getContractFactory("ASignOfTheTimes");
-  const assot = await ASSOTNFT.deploy("ipfs://fsfgs/");
+  const assot = await ASSOTNFT.deploy("ipfs://Will-Simp-Watches-His-Wife-Get-Railed/");
 
   await assot.deployed();
 

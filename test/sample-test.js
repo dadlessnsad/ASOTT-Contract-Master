@@ -55,7 +55,7 @@ describe("ASSOT test", function () {
 
       expect(assot.connect(addr1).developNFT(1, {
         value: ethers.utils.parseEther('0.15')
-      })).to.be.revertedWith('one NFT Per Address');
+      })).to.be.revertedWith('Can only has 1');
 
     })
 
@@ -68,6 +68,13 @@ describe("ASSOT test", function () {
 
     })
     
+    it("shold only allow 1tk if user tries for 2 in one TX", async function() {
+      const pause = await assot.togglePaused(false);
+
+      expect(assot.connect(addr1).developNFT(2, {
+        value: ethers.utils.parseEther('0.3')
+      })).to.be.revertedWith('Can only has 1');
+    })
 
   })
 })

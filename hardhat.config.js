@@ -22,10 +22,10 @@ module.exports = {
   networks: {
     hardhat: {
     },
-    // rinkeby: {
-    //   url: INFURA_PROJECT_ID,
-    //   accounts: [`${DEPLOYER_PRIVATE_KEY}`]
-    // }
+    rinkeby: {
+      url: INFURA_PROJECT_ID,
+      accounts: [`${DEPLOYER_PRIVATE_KEY}`]
+    }
   },
   solidity: "0.8.7",
   settings: {
@@ -42,7 +42,7 @@ module.exports = {
   },
     gasReporter: {
       currency: 'USD',
-      gasPrice: 47,
+      gasPrice: 68,
       coinmarketcap: "ed130847-6c1e-4071-b79d-0e037d5df036"
     },
   etherscan: {
