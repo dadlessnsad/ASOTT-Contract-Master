@@ -23,6 +23,10 @@ module.exports = {
   networks: {
     hardhat: {
     },
+    mainnet: {
+      url: `https://mainnet.infura.io/v3/${INFURA_PROJECT_ID}`,
+      accounts: [`${DEPLOYER_PRIVATE_KEY}`]
+    },
     goerli: {
       url: `https://goerli.infura.io/v3/${INFURA_PROJECT_ID}`,
       accounts: [`${DEPLOYER_PRIVATE_KEY}`]

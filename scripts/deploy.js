@@ -15,9 +15,9 @@ async function main() {
 
     // The constructor layout baseURI, rootHash, Lead wallet address.
     // These 3 params should be placed into arguments.js this is used to verify our contract.
-    // Unrevealed JSON ipfs://QmaUSmYpoD4SdnW8k9Pzsuz6s5bThTVRD12TYczB6oh6MB
-    // Revealed JSON 
-    const asott = await ASOTT.deploy("ipfs://QmaUSmYpoD4SdnW8k9Pzsuz6s5bThTVRD12TYczB6oh6MB/");
+    // Unrevealed JSON ipfs://Qma6gAUZxAY6xPZGZY2gHN5Wj3u8KGLoVbbBt4Msrpjeuu/
+    // Revealed JSON ipfs://QmWZ8HV6eUi83Q6HLq4gKwHPZHkRbHEjamYXp4Kzyqcpoe/
+    const asott = await ASOTT.deploy("ipfs://Qma6gAUZxAY6xPZGZY2gHN5Wj3u8KGLoVbbBt4Msrpjeuu/");
     await asott.deployed();
 
     console.log("A Sign Of The Times deployed to:", asott.address);
