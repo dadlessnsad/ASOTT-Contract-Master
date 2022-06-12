@@ -44,15 +44,15 @@
 
     1.  Install deps, run in terminal  ``npm i``
     2.  Double check tests run in terminal 
-        -   ``npx hardhat compile``
-        -   ``npx hardhat test``
-        -   ``npx hardhat coverage``
+        ``npx hardhat compile``
+        ``npx hardhat test``
+        ``npx hardhat coverage``
 
         -Then you can check test on a web browser by opening *coverage/index.html*
         
     3.  Set all ENV vars in a .env file
     4.  to deploy run in terminal 
-        -   ``npx hardhat --network mainnet run scripts/deploy.js``
+            ``npx hardhat --network mainnet run scripts/deploy.js``
 
     5.  To verify contract run in terminal after contract has been deployed
-        -   ` `npx hardhat verify --network mainnet DEPLOYED_CONTRACT_ADDRESS "ipfs://Qma6gAUZxAY6xPZGZY2gHN5Wj3u8KGLoVbbBt4Msrpjeuu/" ``
+            ``npx hardhat verify --network mainnet DEPLOYED_CONTRACT_ADDRESS "ipfs://Qma6gAUZxAY6xPZGZY2gHN5Wj3u8KGLoVbbBt4Msrpjeuu/" ``
