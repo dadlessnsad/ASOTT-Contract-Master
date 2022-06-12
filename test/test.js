@@ -17,7 +17,7 @@ describe("ASOTT test", function () {
         ASOTT = await ethers.getContractFactory('ASignOfTheTimes');
         [owner, addr1, addr2, greg, addr3] = await ethers.getSigners();
 
-        asott = await ASOTT.deploy("ipfs://QmaUSmYpoD4SdnW8k9Pzsuz6s5bThTVRD12TYczB6oh6MB/");
+        asott = await ASOTT.deploy("ipfs://Qma6gAUZxAY6xPZGZY2gHN5Wj3u8KGLoVbbBt4Msrpjeuu/");
         await asott.deployed();
 
         await asott.connect(owner).togglePaused(false);
@@ -123,7 +123,7 @@ describe("ASOTT test", function () {
                 value: ethers.utils.parseEther("0.15")
             })
             console.log(await asott.tokenURI(1))
-            expect(await asott.tokenURI(1)).to.eq("ipfs://QmaUSmYpoD4SdnW8k9Pzsuz6s5bThTVRD12TYczB6oh6MB/1")
+            expect(await asott.tokenURI(1)).to.eq("ipfs://Qma6gAUZxAY6xPZGZY2gHN5Wj3u8KGLoVbbBt4Msrpjeuu/1.json")
         })
 
 

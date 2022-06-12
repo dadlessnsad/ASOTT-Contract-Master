@@ -35,7 +35,7 @@ import "@openzeppelin/contracts/token/common/ERC2981.sol";
 
 contract ASignOfTheTimes is ERC721A, ReentrancyGuard, ERC2981, Ownable {
 
-    string public baseExtension;
+    string public baseExtension = ".json";
     string public baseURI;
 
     address payable public GregoryBerg = payable(0x33602B325F169741662cD33C3F693Eee8dbD20D5);
