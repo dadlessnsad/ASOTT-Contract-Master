@@ -23,7 +23,7 @@
    ██║   ██║██║╚██╔╝██║██╔══╝  ╚════██║           
    ██║   ██║██║ ╚═╝ ██║███████╗███████║           
    ╚═╝   ╚═╝╚═╝     ╚═╝╚══════╝╚══════╝                                                                                      
-*/   
+*/
 
 pragma solidity ^0.8.13;
 
@@ -35,13 +35,20 @@ import "@openzeppelin/contracts/token/common/ERC2981.sol";
 
 contract ASignOfTheTimes is ERC721A, ReentrancyGuard, ERC2981, Ownable {
 
+<<<<<<< HEAD
     string public baseExtension;
+=======
+
+
+>>>>>>> 97679f8d08126260ab2aa64e1530bad5322bd6f5
     string public baseURI;
 
-    address payable public GregoryBerg = payable(0x33602B325F169741662cD33C3F693Eee8dbD20D5);
+    address payable public GregoryBerg =
+        payable(0x33602B325F169741662cD33C3F693Eee8dbD20D5);
 
     bool public paused = true;
 
+<<<<<<< HEAD
     uint public nftPerAddress = 2;
     uint public maxSupply = 100;
     uint256 public cost = 0.15 ether;
@@ -56,18 +63,31 @@ contract ASignOfTheTimes is ERC721A, ReentrancyGuard, ERC2981, Ownable {
     {
         baseURI= _initBaseURI;
         _setDefaultRoyalty(GregoryBerg, 1000);
+=======
+    uint256 public nftPerAddress = 1;
+    uint256 public maxSupply = 100;
+    uint256 cost = 0.15 ether;
+
+    mapping(address => uint256) public addressMintedBalance;
+
+    constructor(string memory _initBaseURI)
+        ERC721A("A Sign Of The Times", "ASSOT")
+    {
+        baseURI = _initBaseURI;
+>>>>>>> 97679f8d08126260ab2aa64e1530bad5322bd6f5
     }
 
     modifier unPaused() {
-        require(!paused, 'Contract paused');
+        require(!paused, "Contract paused");
         _;
     }
 
     modifier callerIsUser() {
-        require(tx.origin == msg.sender, 'The caller is another contract.');
+        require(tx.origin == msg.sender, "The caller is another contract.");
         _;
     }
 
+<<<<<<< HEAD
     function developNFT(
         uint256 _amount
     ) 
@@ -80,13 +100,31 @@ contract ASignOfTheTimes is ERC721A, ReentrancyGuard, ERC2981, Ownable {
         require((_amount + supply) <= maxSupply, "Sold Out");
         require(_amount + addressMintedBalance[msg.sender] <= nftPerAddress, "Can only has 2");
         require(msg.value >= (cost * _amount), "not enough ether value");
+=======
+    modifier isCorrectPayment(uint256 price, uint256 _amount) {
+        require(cost * _amount >= msg.value, "Incorrect ETH value sent");
+        _;
+    }
+
+    function developNFT(uint256 _amount)
+        public
+        payable
+        unPaused
+        callerIsUser
+        isCorrectPayment(cost, _amount)
+    {
+        require((_amount + totalSupply()) <= maxSupply, "Sold Out");
+        require(
+            _amount + addressMintedBalance[msg.sender] <= nftPerAddress,
+            "Can only has 1"
+        );
+>>>>>>> 97679f8d08126260ab2aa64e1530bad5322bd6f5
 
         for (uint256 i = 1; i <= _amount; i++) {
             addressMintedBalance[msg.sender]++;
         }
         _safeMint(msg.sender, _amount);
     }
-
 
 
     function setBaseURI(string memory _newBaseURI) external onlyOwner {
@@ -101,7 +139,7 @@ contract ASignOfTheTimes is ERC721A, ReentrancyGuard, ERC2981, Ownable {
         cost = _cost;
     }
 
-    function setNftPerAddress(uint _nftPerAddress) external onlyOwner {
+    function setNftPerAddress(uint256 _nftPerAddress) external onlyOwner {
         nftPerAddress = _nftPerAddress;
     }
 
@@ -120,7 +158,7 @@ contract ASignOfTheTimes is ERC721A, ReentrancyGuard, ERC2981, Ownable {
         require(success, "Failed to send to Greg.");
     }
 
-    function tokenURI(uint256 _tokenId) 
+    function tokenURI(uint256 _tokenId)
         public
         view
         virtual
@@ -128,6 +166,7 @@ contract ASignOfTheTimes is ERC721A, ReentrancyGuard, ERC2981, Ownable {
         returns (string memory)
     {
         require(_exists(_tokenId), "Token does not exist.");
+<<<<<<< HEAD
         return string(abi.encodePacked(baseURI, Strings.toString(_tokenId), baseExtension));
     }
 
@@ -149,9 +188,14 @@ contract ASignOfTheTimes is ERC721A, ReentrancyGuard, ERC2981, Ownable {
         returns(uint256)
     {
         return 1;
+=======
+        return
+            string(
+                abi.encodePacked(baseURI, Strings.toString(_tokenId), ".json")
+            );
+>>>>>>> 97679f8d08126260ab2aa64e1530bad5322bd6f5
     }
 }
-
 
 /*
  █████╗     ███████╗██╗ ██████╗ ███╗   ██╗        
@@ -172,4 +216,4 @@ contract ASignOfTheTimes is ERC721A, ReentrancyGuard, ERC2981, Ownable {
    ██║   ██║██║╚██╔╝██║██╔══╝  ╚════██║           
    ██║   ██║██║ ╚═╝ ██║███████╗███████║           
    ╚═╝   ╚═╝╚═╝     ╚═╝╚══════╝╚══════╝                                                                                      
-*/    
+*/

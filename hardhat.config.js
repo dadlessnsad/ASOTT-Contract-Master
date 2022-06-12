@@ -23,12 +23,17 @@ module.exports = {
   networks: {
     hardhat: {
     },
+<<<<<<< HEAD
     goerli: {
       url: `https://goerli.infura.io/v3/${INFURA_PROJECT_ID}`,
       accounts: [`${DEPLOYER_PRIVATE_KEY}`]
     },
     rinkeby: {
       url: `https://rinkeby.infura.io/v3/${INFURA_PROJECT_ID}`,
+=======
+    rinkeby: {
+      url: INFURA_PROJECT_ID,
+>>>>>>> 97679f8d08126260ab2aa64e1530bad5322bd6f5
       accounts: [`${DEPLOYER_PRIVATE_KEY}`]
     }
   },
@@ -47,7 +52,11 @@ module.exports = {
   },
     gasReporter: {
       currency: 'USD',
+<<<<<<< HEAD
       gasPrice: 25,
+=======
+      gasPrice: 68,
+>>>>>>> 97679f8d08126260ab2aa64e1530bad5322bd6f5
       coinmarketcap: "ed130847-6c1e-4071-b79d-0e037d5df036"
     },
   etherscan: {
