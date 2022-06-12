@@ -2,6 +2,7 @@ require("@nomiclabs/hardhat-waffle");
 require("hardhat-gas-reporter");
 require('hardhat-contract-sizer');
 require("@nomiclabs/hardhat-etherscan");
+require('solidity-coverage');
 require('dotenv').config();
 // require("@nomiclabs/hardhat-etherscan");
 const { expect } = require("chai");
@@ -22,12 +23,16 @@ module.exports = {
   networks: {
     hardhat: {
     },
-    // rinkeby: {
-    //   url: INFURA_PROJECT_ID,
-    //   accounts: [`${DEPLOYER_PRIVATE_KEY}`]
-    // }
+    goerli: {
+      url: `https://goerli.infura.io/v3/${INFURA_PROJECT_ID}`,
+      accounts: [`${DEPLOYER_PRIVATE_KEY}`]
+    },
+    rinkeby: {
+      url: `https://rinkeby.infura.io/v3/${INFURA_PROJECT_ID}`,
+      accounts: [`${DEPLOYER_PRIVATE_KEY}`]
+    }
   },
-  solidity: "0.8.7",
+  solidity: "0.8.13",
   settings: {
     optimizer: {
       enabled: true,
@@ -42,7 +47,7 @@ module.exports = {
   },
     gasReporter: {
       currency: 'USD',
-      gasPrice: 47,
+      gasPrice: 25,
       coinmarketcap: "ed130847-6c1e-4071-b79d-0e037d5df036"
     },
   etherscan: {
